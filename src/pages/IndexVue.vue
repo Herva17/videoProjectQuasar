@@ -43,21 +43,20 @@
 
 <script>
 import { ref } from "vue";
+import { useRouter } from "vue-router"; // Importe useRouter
 
 export default {
-  name: "LoginPage",
-  setup(_, { root }) {
-    // Liste des utilisateurs enregistrés en local
+  name: "MapageVue",
+  setup() {
+    const router = useRouter(); // Accède au routeur
     const users = ref([
       { id: 1, nom: "iragi", email: "iragi@example.com", password: "12345" },
       { id: 2, nom: "john", email: "john@example.com", password: "password" },
     ]);
 
-    // Champs du formulaire
     const email = ref("");
     const password = ref("");
 
-    // Méthode de connexion
     const loginUser = () => {
       const user = users.value.find(
         (u) => u.email === email.value && u.password === password.value
@@ -66,7 +65,9 @@ export default {
       if (user) {
         console.log("User Logged In:", user.nom);
         alert(`Bienvenue, ${user.nom}!`);
-        this.$router.push({ name: 'login', query: { redirect: '/MapageVue.vue' } });
+
+        // Redirige vers la page d'accueil après connexion réussie
+        router.push("/login");
       } else {
         console.log("Invalid Credentials");
         alert("Identifiants incorrects. Veuillez réessayer.");
