@@ -67,7 +67,7 @@ export default {
         alert(`Bienvenue, ${user.nom}!`);
 
         // Redirige vers la page d'accueil après connexion réussie
-        router.push("/login");
+        router.push("/MaPage");
       } else {
         console.log("Invalid Credentials");
         alert("Identifiants incorrects. Veuillez réessayer.");
