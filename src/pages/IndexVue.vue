@@ -7,7 +7,7 @@
       </q-card-section>
 
       <q-card-section>
-        <q-form @submit.prevent="loginUser">
+        <q-form @submit="loginUser">
           <q-input
             v-model="email"
             type="email"
@@ -66,10 +66,13 @@ export default {
         console.log("User Logged In:", user.nom);
         alert(`Bienvenue, ${user.nom}!`);
 
+        // Stocker le nom de l'utilisateur dans Local Storage
+        localStorage.setItem("username", user.nom);
+
         // Redirige vers la page d'accueil après connexion réussie
         router.push("/MaPage");
       } else {
-        console.log("Invalid Credentials");
+        console.log("Identifiants incorrects");
         alert("Identifiants incorrects. Veuillez réessayer.");
       }
     };
